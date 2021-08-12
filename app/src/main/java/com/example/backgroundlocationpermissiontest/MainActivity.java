@@ -12,7 +12,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -113,13 +112,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void showLocationServiceDialog() {
         new AlertDialog.Builder(this)
-        .setTitle("location service")
-        .setMessage("ask for enable location service")
-        .setPositiveButton(android.R.string.ok, (paramDialogInterface, paramInt) -> {
-            Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            startActivity(myIntent);
-        })
-        .show();
+                .setTitle("location service")
+                .setMessage("ask for enable location service")
+                .setPositiveButton(android.R.string.ok, (paramDialogInterface, paramInt) -> {
+                    Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(myIntent);
+                })
+                .show();
     }
 
 
@@ -136,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
 
         alertDialogBuilder.show();
     }
-
 
 
     private void showToastAndLog(String message) {
