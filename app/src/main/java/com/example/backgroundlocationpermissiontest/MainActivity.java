@@ -24,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE_FINE_LOCATION = 3;
     private static final int PERMISSION_REQUEST_BACKGROUND_LOCATION = 4;
 
-    final String TAG = "MainActivity";
+    final String TAG = "MainActivityLog";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG,"onCreate called");
         super.onCreate(savedInstanceState);
         com.example.backgroundlocationpermissiontest.databinding.ActivityMainBinding x = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(x.getRoot());
@@ -37,6 +38,18 @@ public class MainActivity extends AppCompatActivity {
         // check for location service enabled
         if (!isLocationServiceEnabled()) showLocationServiceDialog();
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) showLocationPermissionDialog();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.i(TAG,"onStart called");
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.i(TAG,"onResume called");
+        super.onResume();
     }
 
     @Override
@@ -67,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void handlePermissionRequestForBackgroundNotifications() {
         // nothing to do if permission was already granted
-        if (isBackgroundLocationAccessAlreadyGranted()) return;
+        if (isBackgroundLocationAccessAlreadyGranted()) {
+            showToastAndLog("background location access already granted");
+            return;
+        };
 
         if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
             // ask user for location permission when app is in background
