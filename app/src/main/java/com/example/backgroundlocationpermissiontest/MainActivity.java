@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             case PERMISSION_REQUEST_CODE_COARSE_LOCATION:
             case PERMISSION_REQUEST_CODE_FINE_LOCATION:
                 if (grantResults[0] != PackageManager.PERMISSION_GRANTED)
-                    showToastAndLog("location permission not granted");
+                    showToastAndLog("fine/coarse location permission not granted");
                 else
-                    showToastAndLog("location permission granted");
+                    showToastAndLog("fine/coarse location permission granted");
                 break;
             case PERMISSION_REQUEST_BACKGROUND_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
@@ -141,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
     private void showLocationPermissionDialog() {
 
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("location permission request");
-        alertDialogBuilder.setMessage("ask for location permission");
+        alertDialogBuilder.setTitle("fine/coarse location permission request");
+        alertDialogBuilder.setMessage("ask for fine/coarse location permission (do this before ask for background location permission)");
         alertDialogBuilder.setPositiveButton(android.R.string.ok, null);
 
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
